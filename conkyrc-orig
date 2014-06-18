@@ -1,0 +1,121 @@
+# set to yes if you want Conky to be forked in the background
+background yes
+
+# Use Xft?
+use_xft yes
+
+# Xft font when Xft is enabled
+#xftfont Trebuchet MS:size=10
+xftfont Sans:size=8
+
+# Text alpha when using Xft
+xftalpha 1
+
+# Update interval in seconds
+update_interval 1.0
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+own_window yes
+own_window_transparent yes
+#own_window_type override
+own_window_type desktop
+#own_window_type normal #use this if you want a nice shadow to appear around conky
+
+# If own_window is yes, these window manager hints may be used
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 200 200
+
+# Maximum width
+maximum_width 240
+
+# Draw shades?
+draw_shades yes
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Draw borders around graphs
+draw_graph_borders no
+
+# Stippled borders?
+# stippled_borders 8
+
+# border margins
+# border_margin 2
+
+# border width
+# border_width 1
+
+# Default colors and also border colors
+default_color white
+default_shade_color black
+default_outline_color white
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+#alignment none
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 12
+gap_y 12
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+##############################################
+##############################################
+
+TEXT
+SYSTEM INFO:
+${hr}
+Host:$alignr$nodename
+Uptime:$alignr$uptime
+RAM:$alignr$mem/$memmax
+Swap usage:$alignr$swap/$swapmax
+Disk usage:$alignr${fs_used /}/${fs_size /}
+Processor #1:$alignr${cpu cpu1}%
+
+
+SHORTCUT KEYS:
+${hr}
+Alt+F2$alignr Run Dialog
+Alt+F3$alignr Alt Menu
+Super+space$alignr Main Menu
+Super+tab$alignr Client Menu
+Super+t$alignr Terminal
+Super+f$alignr File Manager
+Super+e$alignr Editor
+Super+m$alignr Media Player
+Super+w$alignr Web Browser
+Super+g$alignr Graphics Editor
+Super+c$alignr Clock
+Super+l$alignr Lock Screen
+Super+v$alignr Volume Control
+Super+u$alignr System Update
+Super+x$alignr Logout
+PrntScrn$alignr Screenshot

@@ -1,0 +1,5 @@
+## ufraw PPA
+# gpg --keyserver keyserver.ubuntu.com --recv C07EE05F
+# gpg --export --armor C07EE05F | sudo apt-key add -
+deb http://ppa.launchpad.net/pmjdebruijn/ubuntu karmic main # disabled on upgrade to karmic
+# deb-src http://ppa.launchpad.net/pmjdebruijn/ubuntu jaunty main

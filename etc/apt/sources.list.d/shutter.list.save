@@ -1,0 +1,5 @@
+## Shutter PPA
+# gpg --keyserver keyserver.ubuntu.com --recv 009ED615
+# gpg --export --armor 009ED615 | sudo apt-key add -
+# deb http://ppa.launchpad.net/shutter/ppa/ubuntu karmic main # disabled on upgrade to karmic
+# deb-src http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main

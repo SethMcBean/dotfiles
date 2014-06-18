@@ -1,0 +1,5 @@
+## OpenOffice.org 3.0
+# gpg --keyserver keyserver.ubuntu.com --recv 247D1CFF
+# gpg --export --armor 247D1CFF | sudo apt-key add -
+# deb http://ppa.launchpad.net/openoffice-pkgs/ubuntu karmic main # disabled on upgrade to karmic
+# deb-src http://ppa.launchpad.net/openoffice-pkgs/ppa/ubuntu jaunty main

@@ -1,0 +1,21 @@
+# muttrc=<Location of top level muttrc file>
+# TitlePrefix=<Prefix for each web page title>
+# Ignore=<Name of rc file or regular expression>
+# Silent=<1 for don't give info, 0 for do give info>
+# BeginComment=<Opening tag for a comment>
+# EndComment=<Closing tag for a comment>
+# BodyTag=<Tag to declare the start of the document body>
+# ManualVars=<URL of section 6 of the mutt manual>
+#
+#
+# ----------------------------------------------------------------------
+ muttrc=~/.mutt/muttrc
+ TitlePrefix=My mutt setup
+# Silent=1
+# Ignore=~/.mutt/mail_aliases
+# Ignore=~/.mutt/defaults.private
+ BeginComment=<STRONG><FONT COLOR="#FF0000">
+ EndComment=</FONT></STRONG>
+ BodyTag=<BODY BGCOLOR="#FFFFFF">
+ ManualVars=http://www.mutt.org/doc/manual/manual-6.html
+# ----------------------------------------------------------------------

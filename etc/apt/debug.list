@@ -1,0 +1,8 @@
+## Debug packages archive
+## gpg --keyserver keyserver.ubuntu.com --recv-key 428D7C01 5E0577F2
+## gpg --check-sigs 428D7C01 # signed by key of Martin Pitt
+## gpg -o - --export 428D7C01 | sudo apt-key add -
+# deb http://ddebs.ubuntu.com jaunty main restricted universe multiverse
+# deb http://ddebs.ubuntu.com jaunty-updates main restricted universe multiverse 
+# deb http://ddebs.ubuntu.com jaunty-security main restricted universe multiverse
+# deb http://ddebs.ubuntu.com jaunty-proposed main restricted universe multiverse

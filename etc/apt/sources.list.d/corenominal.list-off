@@ -1,0 +1,6 @@
+## Liberation and Free Fonts
+# gpg --keyserver keyserver.ubuntu.com --recv A47394CE
+# gpg --export --armor A47394CE | sudo apt-key add -
+# Packages are ttf-aefonts and ttf-liberation
+deb http://ppa.launchpad.net/corenominal/ubuntu karmic main # disabled on upgrade to karmic
+# deb-src http://ppa.launchpad.net/corenominal/ubuntu jaunty main

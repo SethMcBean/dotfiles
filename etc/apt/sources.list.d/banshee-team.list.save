@@ -1,0 +1,6 @@
+## Banshee Team - Ubuntu Updated Packages
+# gpg --keyserver keyserver.ubuntu.com --recv 6E80C6B7
+# gpg --export --armor 6E80C6B7 | sudo apt-key add -
+# https://edge.launchpad.net/~banshee-team/+archive
+# deb http://ppa.launchpad.net/banshee-team/ubuntu karmic main # disabled on upgrade to karmic
+# deb-src http://ppa.launchpad.net/banshee-team/ubuntu jaunty main

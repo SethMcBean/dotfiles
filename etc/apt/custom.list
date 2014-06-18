@@ -1,0 +1,97 @@
+## Add apt key in one line:
+## sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com $KEY
+
+## Banshee Team - Ubuntu Updated Packages
+# gpg --keyserver keyserver.ubuntu.com --recv 6E80C6B7
+# gpg --export --armor 6E80C6B7 | sudo apt-key add -
+# https://edge.launchpad.net/~banshee-team/+archive
+deb http://ppa.launchpad.net/banshee-team/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/banshee-team/ubuntu jaunty main
+
+## Liberation and Free Fonts
+# gpg --keyserver keyserver.ubuntu.com --recv A47394CE
+# gpg --export --armor A47394CE | sudo apt-key add -
+# Packages are ttf-aefonts and ttf-liberation
+deb http://ppa.launchpad.net/corenominal/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/corenominal/ubuntu jaunty main
+
+## Medibuntu - Ubuntu 9.04 "Jaunty Jackalope"
+## Please report any bug on https://bugs.launchpad.net/medibuntu/
+deb http://packages.medibuntu.org/ jaunty free non-free
+# deb-src http://packages.medibuntu.org/ jaunty free non-free
+
+## Deluge team
+# gpg --keyserver keyserver.ubuntu.com --recv 249AD24C
+# gpg --export --armor 249AD24C | sudo apt-key add -
+deb http://ppa.launchpad.net/deluge-team/ubuntu jaunty main universe
+# deb-src http://ppa.launchpad.net/deluge-team/ubuntu jaunty main universe
+
+# Google testing repository
+# sudo aptitude install ca-certificates &&
+# wget -q https://dl-ssl.google.com/linux/linux_signing_key.pub -O- | sudo apt-key add -
+deb http://dl.google.com/linux/deb/ testing non-free
+
+## Google Code winff
+# gpg --keyserver keyserver.ubuntu.com --recv F96FD737
+# gpg --export --armor F96FD737 | sudo apt-key add -
+# deb http://ppa.launchpad.net/paul-climbing/ubuntu jaunty main
+
+## OpenOffice.org 3.0
+# gpg --keyserver keyserver.ubuntu.com --recv 247D1CFF
+# gpg --export --armor 247D1CFF | sudo apt-key add -
+deb http://ppa.launchpad.net/openoffice-pkgs/ubuntu jaunty main
+
+## Kenneth Wimer's murrine-svn Dust theme
+# gpg --keyserver keyserver.ubuntu.com --recv EDCA87CA
+# gpg --export --armor EDCA87CA | sudo apt-key add -
+# deb http://ppa.launchpad.net/kwwii/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/kwwii/ubuntu jaunty main
+
+## Dropbox
+deb http://linux.getdropbox.com/ubuntu jaunty main
+# deb-src http://linux.getdropbox.com/ubuntu jaunty main
+
+## Cherokee webserver
+# gpg --keyserver keyserver.ubuntu.com --recv EBA7BD49
+# gpg --export --armor EBA7BD49 | sudo apt-key add -
+deb http://ppa.launchpad.net/cherokee-webserver/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/cherokee-webserver/ubuntu jaunty main
+
+## ufraw PPA
+# gpg --keyserver keyserver.ubuntu.com --recv C07EE05F
+# gpg --export --armor C07EE05F | sudo apt-key add -
+deb http://ppa.launchpad.net/pmjdebruijn/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/pmjdebruijn/ubuntu jaunty main
+
+## Kubuntu Experimental PPA
+# gpg --keyserver keyserver.ubuntu.com --recv 493B3065
+# gpg --export --armor 493B3065 | sudo apt-key add -
+deb http://ppa.launchpad.net/kubuntu-experimental/ppa/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/kubuntu-experimental/ppa/ubuntu jaunty main
+
+## Digikam and KIPI-Plugins Experimental PPA
+## (PPA depends Kubuntu Experimental PPA)
+# gpg --keyserver keyserver.ubuntu.com --recv E353B3E9
+# gpg --export --armor E353B3E9 | sudo apt-key add -
+deb http://ppa.launchpad.net/digikam-experimental/ppa/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/digikam-experimental/ppa/ubuntu jaunty main
+
+## Shutter PPA
+# gpg --keyserver keyserver.ubuntu.com --recv 009ED615
+# gpg --export --armor 009ED615 | sudo apt-key add -
+deb http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/shutter/ppa/ubuntu jaunty main
+
+## Ubuntu rescue remix gpg_key=BDFD6D77
+deb http://ppa.launchpad.net/arzajac/ppa/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/arzajac/ppa/ubuntu jaunty main
+
+## Thunar backport - gpg_key=5D9DCE6C
+deb http://ppa.launchpad.net/jerome-guelfucci/ppa/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/jerome-guelfucci/ppa/ubuntu jaunty main
+
+## Chromium Browser Nightlies - gpg_key=4E5E17B5
+deb http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/chromium-daily/ppa/ubuntu jaunty main
+
+

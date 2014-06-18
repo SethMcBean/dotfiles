@@ -1,0 +1,12 @@
+aptitude "";
+aptitude::Delete-Unused-Pattern "";
+aptitude::UI "";
+aptitude::UI::Minibuf-Prompts "true";
+aptitude::UI::Minibuf-Download-Bar "true";
+aptitude::UI::InfoAreaTabs "false";
+aptitude::UI::Description-Visible-By-Default "true";
+aptitude::Recommends-Important "false";
+aptitude::AutoClean-After-Update "true";
+aptitude::Ignore-Recommends-Important "true";
+APT "";
+APT::Install-Recommends "false";

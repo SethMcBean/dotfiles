@@ -1,0 +1,145 @@
+# Use Xft?
+use_xft yes
+xftfont Droid Sans Mono Bold:size=8
+xftalpha 0.8
+text_buffer_size 2048
+
+# Update interval in seconds
+update_interval 1
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Create own window instead of using desktop (required in nautilus)
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+# Use double buffering (reduces flicker, may not work for everyone)
+double_buffer yes
+
+# Minimum size of text area
+minimum_size 180 0
+#maximum_width 200
+
+# Draw shades?
+draw_shades yes
+
+# Draw outlines?
+draw_outline no
+
+# Draw borders around text
+draw_borders no
+
+# Stippled borders?
+stippled_borders 0
+
+# border margins
+border_margin 5
+
+# border width
+border_width 1
+
+# Default colors and also border colors
+default_color white
+default_shade_color black
+#default_outline_color white
+own_window_colour white
+
+# Text alignment, other possible values are commented
+#alignment top_left
+alignment top_right
+#alignment bottom_left
+#alignment bottom_right
+
+# Gap between borders of screen and text
+# same thing as passing -x at command line
+gap_x 35
+gap_y 5
+
+# Subtract file system buffers from used memory?
+no_buffers yes
+
+# set to yes if you want all text to be in uppercase
+uppercase no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# number of net samples to average
+# set to 1 to disable averaging
+net_avg_samples 2
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale yes
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+use_spacer none
+
+TEXT
+${font Droid Serif}$nodename${font}${hr 2}
+${font StyleBats:size=12}o${font}   Uptime: ${alignr}${uptime}
+#${voffset 2}${font OpenLogos:size=12}u${font}   Kernel:  ${alignr}${kernel}
+${font StyleBats:size=12}A${font}   CPU: ${freq 1}MHz ${cpu cpu1}% ${alignr}${cpubar cpu1 4,60}
+${font StyleBats:size=12}g${font}   RAM: $memperc% ${alignr}${membar 4,60}
+${font StyleBats:size=12}j${font}   SWAP: $swapperc% ${alignr}${swapbar 4,60}
+${font Webdings:size=12}~${font}  Battery: ${battery_percent BAT0}% ${alignr}${battery_bar 4,60 BAT0}
+${font Devil inside:size=12}q${font}   Temperature: ${alignr}${acpitemp}C
+
+DATE ${hr 2}
+${alignc 35}${font Droid Serif:size=16}${time %X}${font}
+${alignc}${time %A, %B %d, %Y}
+
+STORAGE ${hr 2}
+${voffset 4}${font Pie charts for maps:size=10}7${font}   Root: ${alignr}${fs_bar 6,50 /}  ${fs_free /} free
+${voffset 4}${font Pie charts for maps:size=10}7${font}   Home: ${alignr}${fs_bar 6,50 /home}  ${fs_free /home} free
+
+NETWORK ${hr 2}
+${if_up eth1}
+${voffset 4}${font PizzaDude Bullets:size=10}Z${font}   SSID: ${alignc}${wireless_essid eth1}
+${font Droid Sans Fallback:size=7}            AP: ${wireless_ap eth1}      (${wireless_mode eth1})${font}
+${voffset 4}${font PizzaDude Bullets:size=10}Z${font}   Signal: ${wireless_link_qual_perc eth1}/${wireless_link_qual_max eth1} ${alignr}Bitrate: ${wireless_bitrate eth1}
+${voffset 4}${font PizzaDude Bullets:size=10}a${font}   Local IP: ${alignr}${addr eth1}
+#${voffset 4}${font PizzaDude Bullets:size=10}b${font}   Public IP: ${alignr}${execi 1 ~/.scripts/ip.sh}
+${voffset -6}${font PizzaDude Bullets:size=10}O${font}   Up: ${upspeed eth1} kb/s ${alignr}${upspeedgraph eth1 4,60 F57900 FCAF3E}
+${voffset 4}${font PizzaDude Bullets:size=10}U${font}   Down: ${downspeed eth1} kb/s ${alignr}${downspeedgraph eth1 4,60 F57900 FCAF3E}
+${else}${if_up eth0}
+${voffset -6}${font PizzaDude Bullets:size=10}O${font}   Up: ${upspeed eth0} kb/s ${alignr}${upspeedgraph eth0 4,60 F57900 FCAF3E}
+${voffset 4}${font PizzaDude Bullets:size=10}U${font}   Down: ${downspeed eth0} kb/s ${alignr}${downspeedgraph eth0 4,60 F57900 FCAF3E}
+${voffset 4}${font PizzaDude Bullets:size=10}a${font}   Local IP: ${alignr}${addr eth0}
+${endif}${else}
+${font PizzaDude Bullets:size=10}4${font}   Network Unavailable
+${endif}
+WEATHER ${hr 2}
+${if_gw}
+${voffset -10}${alignr 56}${font ConkyWeather:style=Bold:size=40}${execi 600 conkyForecast --location=USNY0172 --imperial --datatype=WF}${font}
+${voffset -50}${font Weather:size=40}y${font}  ${voffset -38}${font Droid Serif:size=26}${execi 600 conkyForecast --location=USNY0172 --imperial --datatype=HT}${font}
+
+${voffset 0}${alignc 43}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=DW --startday=0 --shortweekday} ${alignc 8}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=DW --startday=1 --shortweekday} ${alignc -29}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=DW --startday=2 --shortweekday} ${alignc -64}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=DW --startday=3 --shortweekday}
+${voffset 0}${alignc 75}${font ConkyWeather:size=28}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=WF --startday=0 --endday=3 --spaces=1}${font}
+${voffset 0}${font Droid Sans Fallback:size=7}${alignc 48}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=HT --startday=0 --hideunits --centeredwidth=3}/${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=LT --startday=0 --hideunits --centeredwidth=3} ${alignc -14}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=HT --startday=1 --hideunits --centeredwidth=3}/${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=LT --startday=1 --hideunits --centeredwidth=3} ${alignc -40}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=HT --startday=2 --hideunits --centeredwidth=3}/${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=LT --startday=2 --hideunits --centeredwidth=3} ${alignr 6}${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=HT --startday=3 --hideunits --centeredwidth=3}/${execpi 600 conkyForecast --location=USNY0172 --imperial --datatype=LT --startday=3 --hideunits --centeredwidth=3}${font}
+${endif}${else}
+${font PizzaDude Bullets:size=10}4${font}   Weather Unavailable
+${endif}
+SHORTCUT KEYS ${hr 2}
+Alt+F2$alignr Run Dialog
+Alt+F3$alignr Alt Menu
+Super+space$alignr Main Menu
+Super+tab$alignr Client Menu
+Super+t$alignr Terminal
+Super+f$alignr File Manager
+Super+e$alignr Editor
+Super+m$alignr Media Player
+Super+w$alignr Web Browser
+Super+d$alignr Deluge Torrent
+Alt+Super+g$alignr Graphics Editor
+Super+p$alignr Picasa
+Super+l$alignr Lock Screen
+Super+v$alignr Volume Control
+Super+u$alignr System Update
+Super+x$alignr Logout
+PrntScrn$alignr Screenshot
+${hr 2}

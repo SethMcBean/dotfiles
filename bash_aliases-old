@@ -1,0 +1,177 @@
+## troubleshooting Xorg-evdev issues
+alias evdev_bug="xev | sed -n 's/^.*state \([0-9].*\), keycode *\([0-9]\+\) *\(.*\), .*$/keycode \2 = \3, state = \1/p'"
+
+# Some convenience aliases
+
+alias installedpackages="sudo dpkg --get-selections | grep '[[:space:]]install$'| awk '{print $1}' > installedpackages"
+
+alias poke="source ~/.DBUS_temp ; export DBUS_SESSION_BUS_ADDRESS ; gnome-screensaver-command -p"
+
+alias bad_thumbs="ls ~/.thumbnails/fail/gnome-thumbnail-factory/"
+alias clean_thumbs="rm ~/.thumbnails/fail/gnome-thumbnail-factory/*"
+
+#alias floola="~/opt/Floola-linux/Floola"
+
+# Load my calibrated monitor profile
+alias colorcorrect="dispwin ~/.local/share/color/icc/display.icc"
+
+# useful du output
+alias usage='du -csh *'
+
+# Fix Broadcom quirks
+#alias fixbcom2="sudo iwconfig eth1 rate 2M fixed"
+#alias fixbcom5="sudo iwconfig eth1 rate 5.5M fixed"
+
+# ALL HOSTS
+###########################################################
+
+# See, I make this mistake so often, I may as well make the damn thing work.
+# If only it worked for form submittal in Mozilla...
+alias :q!="exit"
+alias :wq="exit"
+alias :q="exit"
+alias :Q="exit"
+alias sduo="sudo"
+alias c="clear"
+alias m="more"
+
+# some ls aliases
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
+
+#alias l="ls"
+#alias la="ls -A"
+#alias dir='ls --color=auto --format=vertical'
+#alias vdir='ls --color=auto --format=long'
+
+alias bterm="xterm -bg rgb:78/62/41"
+    
+alias logmail="tail -F /var/log/mail.log"
+alias setup_vim="mkdir -p ~/.vim/{colors,doc,ftplugin,plugin,syntax} ~/{backup,temp}"
+
+#alias backupconf=" tar -u --backup simple --exclude=*/headercache/* \
+# --exclude=.bash_history \
+# --exclude=.*/logs* --exclude=.mozilla/firefox/*/Cache \
+# -C /home/sephee -v -j -p -g \
+# .bash* .bogofilter/wordlist.db .bogofilter.cf .elinks .fetchmailrc \
+# .fetchyahoorc .gaim .gajim .gnupg .gvimrc .local/ .mozilla/ .mutt/ \
+# .procmailrc .ssh .vimrc .vim/ .xchat2 "
+
+# I use procmail, and find these very handy for handling mailstat. Usually
+# mailstat removes your procmail log, so I have "nm" which does that, "nmk"
+# which keeps it intact (so your logs keep adding up) and "om" which shows
+# a the previous mailstat from a saved procmail log.
+alias nm="mailstat -m ~/.maildir/procmail.log"
+alias nmk="mailstat -mk ~/.maildir/procmail.log"
+alias om="mailstat -om ~/.maildir/procmail.log"
+
+
+# LINUX HOSTS
+###########################################################
+case $OSTYPE in
+linux*)
+# enable color support of ls and also add handy aliases
+	if [ -x /usr/bin/dircolors ]; then
+    	eval "`dircolors -b`"
+    	alias ls='ls --color=auto'
+    	alias dir='dir --color=auto'
+    	alias vdir='vdir --color=auto'
+
+    	alias grep='grep --color=auto'
+    	alias fgrep='fgrep --color=auto'
+    	alias egrep='egrep --color=auto'
+        alias bterm="xterm -bg rgb:78/62/41"
+
+        alias logmail="tail -F /var/log/mail.log"
+        #alias setup_vim="mkdir -p ~/.vim/{colors,doc,ftplugin,plugin,syntax} ~/{backup,temp}"
+        #alias backupconf=" tar -u --backup simple --exclude=*/headercache/* \
+        ## --exclude=.bash_history \
+        ## --exclude=.*/logs* --exclude=.mozilla/firefox/*/Cache \
+        ## -C /home/sephee -v -j -p -g \
+        ## .bash* .bogofilter/wordlist.db .bogofilter.cf .elinks .fetchmailrc \
+        ## .fetchyahoorc .gaim .gajim .gnupg .gvimrc .local/ .mozilla/ .mutt/ \
+        ## .procmailrc .ssh .vimrc .vim/ .xchat2 "
+        #
+        ## I use procmail, and find these very handy for handling mailstat.
+        #Usually
+        ## mailstat removes your procmail log, so I have "nm" which does that,
+        #"nmk"
+        ## which keeps it intact (so your logs keep adding up) and "om" which
+        #shows
+        ## a the previous mailstat from a saved procmail log.
+        #alias nm="mailstat -m ~/.maildir/procmail.log"
+        #alias nmk="mailstat -mk ~/.maildir/procmail.log"
+        #alias om="mailstat -om ~/.maildir/procmail.log"
+	fi
+
+# Grab my mail from my laptop
+#	alias grabmail="rsync -avr --stats --progress blackeagle.local:/Users/sephee/.maildir/ /home/sephee/mail-be"
+
+# Easy snapshots
+	alias snap="scrot -d 3 -c ~/images/screenshots/%F.%X-%Z.png"
+
+# make less more pretty
+	alias less="/usr/share/vim/vimcurrent/macros/less.sh"
+
+## Ubuntu packaging and bug hunting helpers
+	alias addme2apt="gpg --armor --export F97AE9DF | sudo apt-key add -"
+	alias dpkg-buildpackage="dpkg-buildpackage -kF97AE9DF -rfakeroot"
+	alias desktopabsolute="grep -E "^Icon=\/usr\/" \
+	/usr/share/applications/*.desktop | cut -d: -f1 | xargs dlocate"
+	alias checkinstall="sudo checkinstall \
+	--maintainer=sepheenix@rabbitnet.org --nodoc --delspec=yes"
+
+# Cool vlc text movie
+	alias vlctext="vlc -I rc -V caca"
+
+	alias syncmusic="rsync -avru --progress --stats --delete-excluded\
+	--exclude-from=/home/sephee/.excludes.list\
+	jinx.local:/Users/Shared/iTunes/iTunes?Music/\
+	/home/sephee/music/itunes"
+	
+	alias unstuff="unstuff -m=auto -e=mac"
+
+	alias fontpage="~/opt/fontpage/fontpage.py"
+
+	alias deluge="deluge 1>/tmp/deluge.log 2>&1"
+	;;
+
+# OS X HOSTS
+###########################################################
+darwin*)
+# make less more pretty
+	alias less='/usr/share/vim/vim73/macros/less.sh'
+	
+#	alias find='gnufind'
+# Darwinports
+#	alias dpupdate="port -d sync"
+#	alias dpselfupdate="sudo port -d selfupdate"
+#	alias port="port -v"
+	;;
+*)
+	;;
+esac
+
+## A few cool functions
+
+## Print my configs for bug-squashing sans all my cruddy comments
+printconf()
+{
+        cat $1 |grep -v ^# |grep [:alnum:]
+}
+
+## AWESOME SHELL FUNCTIONS
+# Very Important Shell Function taken from jdub
+beer()
+{
+        echo "         _.._..,_,_"
+        echo "        (          )"
+        echo "         ]~,\"-.-~~["
+        echo "       .=])' (;  ([    PANTS OFF!"
+        echo "       | ]:: '    ["
+        echo "       '=]): .)  (["
+        echo "         |:: '    |"
+        echo "          ~~----~~"
+}
+

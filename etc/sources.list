@@ -1,0 +1,56 @@
+# Automatically generated sources.list
+# http://www.ubuntu-nl.org/source-o-matic/
+#
+# If you get GPG errors with this sources.list, locate the GPG key in this file
+# and run these commands (where KEY is replaced with that key)
+#
+# gpg --keyserver hkp://subkeys.pgp.net --recv-keys KEY
+# gpg --export --armor KEY | sudo apt-key add -
+#
+# If you don't know what to do with this file, read
+# https://help.ubuntu.com/community/Repositories/CommandLine
+
+# Ubuntu supported packages
+# GPG key: 437D05B5
+deb http://ubuntu.media.mit.edu/ubuntu/ jaunty main restricted universe
+deb http://ubuntu.media.mit.edu/ubuntu/ jaunty-updates main restricted universe
+deb http://ubuntu.media.mit.edu/ubuntu/ jaunty-security main restricted universe
+
+# deb-src http://us.archive.ubuntu.com/ubuntu jaunty main restricted
+# deb-src http://us.archive.ubuntu.com/ubuntu jaunty-updates main restricted
+# deb-src http://security.ubuntu.com/ubuntu jaunty-security main restricted
+
+# Ubuntu community supported packages
+# GPG key: 437D05B5
+deb http://ubuntu.media.mit.edu/ubuntu/ jaunty multiverse
+deb http://ubuntu.media.mit.edu/ubuntu/ jaunty-updates multiverse
+deb http://ubuntu.media.mit.edu/ubuntu/ jaunty-security multiverse
+
+# deb-src http://us.archive.ubuntu.com/ubuntu jaunty universe multiverse
+# deb-src http://us.archive.ubuntu.com/ubuntu jaunty-updates universe multiverse
+# deb-src http://security.ubuntu.com/ubuntu jaunty-security universe multiverse
+
+# Ubuntu backports project
+# GPG key: 437D05B5
+deb http://ubuntu.media.mit.edu/ubuntu/ jaunty-backports main restricted multiverse universe
+
+# deb-src http://us.archive.ubuntu.com/ubuntu jaunty-backports main restricted universe multiverse
+
+# Ubuntu proposed updates
+# GPG key: 437D05B5
+
+deb http://ubuntu.media.mit.edu/ubuntu/ jaunty-proposed main restricted multiverse universe
+# deb-src http://us.archive.ubuntu.com/ubuntu jaunty-proposed main restricted universe multiverse
+
+# Canonical Commercial packages
+# GPG key: 437D05B5
+deb http://archive.canonical.com jaunty partner
+# deb-src http://us.archive.canonical.com jaunty partner
+
+# Ubuntu debug packages
+# GPG key: 437D05B5
+# deb http://ddebs.ubuntu.com jaunty main restricted universe multiverse
+# deb http://ddebs.ubuntu.com jaunty-updates main restricted universe multiverse
+# deb http://ddebs.ubuntu.com jaunty-proposed main restricted universe multiverse
+# deb http://ddebs.ubuntu.com jaunty-security main restricted universe multiverse
+

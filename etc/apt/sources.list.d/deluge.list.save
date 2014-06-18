@@ -1,0 +1,5 @@
+## Deluge team
+# gpg --keyserver keyserver.ubuntu.com --recv 249AD24C
+# gpg --export --armor 249AD24C | sudo apt-key add -
+deb http://ppa.launchpad.net/deluge-team/ubuntu karmic main universe # disabled on upgrade to karmic
+# deb-src http://ppa.launchpad.net/deluge-team/ubuntu jaunty main universe

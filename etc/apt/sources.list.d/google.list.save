@@ -1,0 +1,4 @@
+# Google testing repository
+# sudo aptitude install ca-certificates &&
+# wget -q https://dl-ssl.google.com/linux/linux_signing_key.pub -O- | sudo apt-key add -
+deb http://dl.google.com/linux/deb/ testing non-free

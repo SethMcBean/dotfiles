@@ -1,0 +1,5 @@
+## Cherokee webserver
+# gpg --keyserver keyserver.ubuntu.com --recv EBA7BD49
+# gpg --export --armor EBA7BD49 | sudo apt-key add -
+deb http://ppa.launchpad.net/cherokee-webserver/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/cherokee-webserver/ubuntu jaunty main

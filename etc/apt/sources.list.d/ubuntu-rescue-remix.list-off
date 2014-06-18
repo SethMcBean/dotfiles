@@ -1,0 +1,3 @@
+## Ubuntu rescue remix gpg_key=BDFD6D77
+deb http://ppa.launchpad.net/arzajac/ppa/ubuntu jaunty main
+# deb-src http://ppa.launchpad.net/arzajac/ppa/ubuntu jaunty main

@@ -1,0 +1,169 @@
+# vim:syn=procmail
+
+## http://wiki.arslinux.com/Mail_Server_FAQ
+## http://perkypants.org/dotfiles/procmailrc.html
+
+##### PRELIMINARIES ######
+# Set on when debugging
+VERBOSE=off
+
+# For security, only allow procmail to know certain things and drop any
+# non-user privileges that procmail may have had.
+DROPPRIVS=yes
+
+SHELL=/bin/bash
+PATH=/bin:/usr/bin
+MAILDIR=$HOME/.maildir
+#you’d better make sure it exists
+DEFAULT=$MAILDIR/
+#delivery directory
+SPAM=$MAILDIR/.Junk/
+#spam folder
+LOGFILE=$MAILDIR/procmail.log
+#LOG="--- Logging ${LOGFILE} for ${LOGNAME}, "
+LOG="### Logging, "
+LOGABSTRACT=all
+
+# Explicitly define helper app paths as env variables this saves us typing a
+# lot, and also keeps a massive path away from procmail should anything go
+# awry. If gmsgp isn't installed, you can use the standard xmessage utility,
+# but it's not as sexy.  Sexy is important.
+SED=/bin/sed
+FORMAIL=/usr/bin/formail
+
+
+###### RECIPES ######
+#Whatever recipes you'll use
+#The order of the recipes is significant
+
+
+# DUPLICATE REMOVAL
+# This rule uses formail to remove emails that have a message-id that has
+# already passed through the system. It keeps an 8K log.  "W" waits until it
+# gets the exit code from formail and filters if appropriate. the 'h' means
+# pipe the headers only. it uses a user-defined lockfile for this task.
+:0 Wh: msgid.lock
+| $FORMAIL -D 8192 msgid.cache
+
+
+#### Filter mail with bogofilter
+# /usr/share/doc/bogofilter/examples/procmailrc.example
+# http://spacepants.org/conf/dot.procmailrc
+
+# if it's already got a spam: yes header from my upstream, then bye bye
+:0
+* ^(X-Spam-Status|X-Bogosity): (Yes|Spam)
+$SPAM
+
+BOGOFILTER_DIR=$HOME/.bogofilter
+
+# bogofilter passthrough-update
+# -u for update wordlists (autolearn based on classification)
+# -e for embedded operation
+# -p for pass-through
+# -l for logging
+# -v be verbose
+:0fw
+| bogofilter -p -u -l -e 
+
+
+## error catcher ##
+#     If bogofilter failed, return the mail to the queue.
+#     Better put this after _EACH_ delivering recipe (not shown here).
+#     Later, the MTA will try again to deliver it.
+#     75 is the value for EX_TEMPFAIL in /usr/include/sysexits.h
+
+:0e
+{ EXITCODE=75 HOST }
+
+# put the spam away
+:0
+* ^X-Bogosity: (Spam|Yes), tests=bogofilter
+$SPAM
+
+# put unsures away
+#:0
+#* ^X-Bogosity: Unsure, tests=bogofilter
+#$MAILDIR/.unsure/
+
+#### Now that we got rid of spam, let's clean up mail cruft
+
+# Add a Content-Length to mails that don't have them
+:0 hfw
+* !^Content-Length:
+| formail -a "Content-Length: 0000000000"
+
+# MAILDIR LINES
+# Add Lines header for mutt with Maildirs. Mutt shows lines based on Lines
+# header.  We have to do this manually for Maildir delivered messages.
+:0 Bfh
+* H ?? !^Lines:
+* -1^0
+*  1^1 ^.*$
+| formail -A "Lines: $="
+
+# SIGNATURE DELIMITER FIXER
+# Some people haven't realised that '--' is actually an incorrect sig
+# delimiter, so this quickly sed-fixes it for them. I contemplated
+# automatically sending a "FIX YER DELIMITER!" email, but that would just be an
+# unproductive nuisance.
+:0 fBw
+* ^--$
+| $SED -e 's/^--$/-- /'
+
+:0 fBw
+* ^_______________________________________________$
+| $SED -e 's/^_______________________________________________$/-- /'
+
+
+# Convert old-style PGP messages to MIME
+:0
+* !^Content-Type: multipart/
+* !^Content-Type: application/pgp
+{
+    :0 fBw
+	* ^-----BEGIN PGP MESSAGE-----
+	* ^-----END PGP MESSAGE-----
+	| formail -i "Content-Type: application/pgp; format=text; x-action=encrypt"
+
+	:0 fBw
+	* ^-----BEGIN PGP SIGNED MESSAGE-----
+	* ^-----BEGIN PGP SIGNATURE-----
+	* ^-----END PGP SIGNATURE-----
+	| formail -i "Content-Type: application/pgp; format=text; x-action=sign"
+}
+
+
+# Automagically handle the mailing lists
+#:0
+#* ^((List-Id|X-(Mailing-)?List):(.*[<]\/[^>]*))
+#{
+#     LISTID=$MATCH
+#
+#     :0:
+#     * LISTID ?? ^\/[^@\.]*
+#     .Lists.$MATCH/
+#}
+
+# For Majordomo lists
+#:0
+#* ^Sender: owner-[^@]+@[^@\+]+
+#* ^Sender: owner-\/[^@\+]+
+#{
+#    :0
+#    .Lists.$MATCH/
+#}
+
+
+## SERVER REPORTS
+#:0:
+#* ^(To:|Cc:|From:).*(root@|anonymous@)
+#* ^FROM_DAEMON
+#$MAILDIR/.SysMail/
+
+## Forward Daemon Messages to admin
+:0
+* ^(To:|Cc:|From:).*(root@|anonymous@)
+$MAILDIR/.SysMail/
+
+

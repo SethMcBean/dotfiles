@@ -1,0 +1,3 @@
+## Thunar backport - gpg_key=5D9DCE6C
+deb http://ppa.launchpad.net/jerome-guelfucci/ppa/ubuntu karmic main # disabled on upgrade to karmic
+# deb-src http://ppa.launchpad.net/jerome-guelfucci/ppa/ubuntu jaunty main

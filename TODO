@@ -1,0 +1,5 @@
+Consolidate vim directories and vimrc files for different hosts (make host agnostic)
+Consolidate ssh directories from different hosts
+Consolidate bashrc and bash_aliases from different hosts
+Make gvimrc useful (or get rid of it)
+

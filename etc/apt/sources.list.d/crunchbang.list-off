@@ -1,0 +1,3 @@
+## CrunchBang Linux 9.04.xx
+## Compatible with Ubuntu 9.04 "Jaunty Jackalope"
+deb http://crunchbang.net/packages-9.04.xx 9.10.xx main # disabled on upgrade to karmic

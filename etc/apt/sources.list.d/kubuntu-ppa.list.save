@@ -1,0 +1,5 @@
+## Kubuntu Experimental PPA
+# gpg --keyserver keyserver.ubuntu.com --recv 8AC93F7A   
+# gpg --export --armor 8AC93F7A | sudo apt-key add -
+# deb http://ppa.launchpad.net/kubuntu-ppa/experimental/ubuntu karmic main # disabled on upgrade to karmic
+# deb-src http://ppa.launchpad.net/kubuntu-ppa/experimental/ubuntu jaunty main
