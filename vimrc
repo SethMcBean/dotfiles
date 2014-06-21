@@ -12,7 +12,18 @@ set backup                      " make backup file
 set backupdir=$HOME/.vim_backup " where to put backup file
 set directory=$HOME/.vim_temp   " directory is the directory for temp file
 
-set textwidth=80    " max length of line for inserting text
+
+"set textwidth=80    " max length of line for inserting text
+"====[ Make the 81st column stand out ]====================
+" I like to code to 80 columns, but I also like to have the option of “slopping over”
+" So I no longer set textwidth
+" But I still want to know when I’m breaking the normal boundaries
+" From More Instantly Better Vim
+" Copyright © Thoughtstream Pty Ltd, 2013. All Rights Reserved. http://damian.conway.org
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+
 set whichwrap=b,s,<,>,[,]
 set lbr             " wordwrap visually
 set formatoptions=l " do not insert hard newlines in paragraphs
@@ -71,6 +82,20 @@ vmap <F1> <C-C><F1>
 omap <F1> <C-C><F1>
 map! <F1> <C-C><F1>
 
+
+" Source - Instantly_Better_Vim_2013/additions_for_your_.vimrc
+"====[ Swap v and CTRL-V, because Block mode is more useful that Visual mode "]======
+
+    nnoremap    v   <C-V>
+    nnoremap <C-V>     v
+
+    vnoremap    v   <C-V>
+    vnoremap <C-V>     v
+
+"====[ Swap : and ; to make colon commands easier to type ]======
+
+    nnoremap  ;  :
+    nnoremap  :  ;
 
 " ########################################################################
 " " Filetype Specific Stuff
