@@ -2,17 +2,20 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-## Derived from default Ubuntu, jdub's config, and some of my own 
+## Derived from default Ubuntu, jdub's config, and some of my own
 ## stuff I figured out along the way
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
+# If not running interactively, don't do anything [ -z "$PS1" ] && return
 
 if [ -f ~/dotfiles/private/bash_myinfo ];then
     . ~/dotfiles/private/bash_myinfo
 fi
+
+# Set LANG otherwise it defaults to de_CH.UTF-8
+export LANG=C
+
 export MAIL="~/.maildir/"
-export EDITOR="vim"
+export EDITOR="atom"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 # don't overwrite GNU Midnight Commander's setting of `ignorespace'.
@@ -50,9 +53,9 @@ if [ "$TERM" != "dumb" ]; then
 # Setup brew environment first, then echo hostname
         PATH=/usr/local/bin:/usr/local/sbin:$PATH
         if [ -d $(brew --prefix)/bin ]; then
-# if brew is installed then check for figlet 
+# if brew is installed then check for figlet
         	if [ -x $(brew --prefix)/bin/figlet ]; then
-        	figlet -S -f small $HOSTNAME
+        	figlet -S -f doom $HOSTNAME
         	fi
         echo "Setting up OS X Environment..."
 # enable programmable completion features (you don't need to enable
@@ -60,13 +63,15 @@ if [ "$TERM" != "dumb" ]; then
 # sources /etc/bash.bashrc).
             if [ -f $(brew --prefix)/etc/bash_completion ]; then
                 . $(brew --prefix)/etc/bash_completion
-                echo -e "Setting up bash completion for this shell...\c"
+                echo -e "Setting up bash completion for this shell...\n"
             else
                 echo "no bash_completion in this shell"
             fi
+          curl wttr.in/Saint-Gallen
+	  eval $(thefuck --alias)
 
 # setup DISPLAY variable for apple's Terminal.app and other dumb term progs
-# since we cant run Terminal.app from ssh, no need to check $SSH_* stuff        
+# since we cant run Terminal.app from ssh, no need to check $SSH_* stuff
 #        elif [[ $TERM_PROGRAM == Apple_Terminal ]]; then
 #            if [ -f ~/.xdisplayrc ];then
 #                echo "setting \$DISPLAY from ~/.xdisplayrc"
@@ -82,8 +87,8 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 # My Silly Prompt (which I think is really rather handy)
-# I used Jeff's checks on $DISPLAY but this did not work from OS X 
-# clients that werent running X11.app. Now I just check to see if were 
+# I used Jeff's checks on $DISPLAY but this did not work from OS X
+# clients that werent running X11.app. Now I just check to see if were
 # running in ssh or not.
 
 #if [ -z $DISPLAY ] || [ "$DISPLAY" = ":0.0" ] || [ "$DISPLAY" = ":1.0" ] || [ ! -z $SSH_CLIENT ];
@@ -166,7 +171,7 @@ fi
 # sources /etc/bash.bashrc).
 #if [ -f /etc/bash_completion ]; then
 #    . /etc/bash_completion
-#elif 
+#elif
 #	[ -f $(brew --prefix)/etc/bash_completion ]; then
 #    . $(brew --prefix)/etc/bash_completion
 #fi

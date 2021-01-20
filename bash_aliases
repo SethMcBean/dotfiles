@@ -1,8 +1,26 @@
+#Super handy alias for using a bare repo like the cool kids
+# Thanks DistroTube – https://youtu.be/tBoLDpTWVOM
+# Thanks https://www.atlassian.com/git/tutorials/dotfiles
+# Will have to adjust location of git depending on host
+alias config='git --git-dir=$HOME/Repos/dotfiles/ --work-tree=$HOME'
+
 # useful du output
 alias usage='du -csh *'
 
 # ALL HOSTS
 ###########################################################
+
+# Get the weather
+#alias wetter="curl wttr.in/Saint-Gallen"
+alias wetter="curl wttr.in/st.gallen?lang=de"
+
+wttr()
+{
+    # change to your default location
+    local request="wttr.in/${1-Saint-Gallen}"
+    [ "$(tput cols)" -lt 125 ] && request+='?n'
+    curl -H "Accept-Language: ${LANG%_*}" --compressed "$request"
+}
 
 #alias gmail="elinks https://mail.google.com/"
 
@@ -74,7 +92,7 @@ linux*)
 ###########################################################
 darwin*)
 # make less more pretty
-        alias less='/usr/share/vim/vim73/macros/less.sh'
+        alias less='/usr/share/vim/vim80/macros/less.sh'
 
         ;;
 *)
@@ -102,4 +120,3 @@ beer()
         echo "         |:: '    |"
         echo "          ~~----~~"
 }
-

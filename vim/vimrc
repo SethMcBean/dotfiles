@@ -5,7 +5,7 @@
 " "
 set nocompatible    " vim defaults are much nicer, not compatible with vi
 set bg=dark             " use dark background
-colorscheme solarized     " default colorscheme
+"colorscheme material " default colorscheme
 set ffs=unix,dos,mac    " support all three, in this order
 
 set backup                      " make backup file
@@ -93,9 +93,9 @@ map! <F1> <C-C><F1>
     vnoremap <C-V>     v
 
 "====[ Swap : and ; to make colon commands easier to type ]======
-
-    nnoremap  ;  :
-    nnoremap  :  ;
+" NOPE. That is definitely not easier to type on a Swiss keyboard
+"    nnoremap  ;  :
+"    nnoremap  :  ;
 
 " ########################################################################
 " " Filetype Specific Stuff
@@ -205,3 +205,23 @@ function! HTML_Maps(...)
     inoremap \. &middot;
 endfunction
 
+" vim-plug install
+" https://github.com/junegunn/vim-plug/wiki/tutorial
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" Declare the list of plugins.
+Plug 'tpope/vim-sensible'
+Plug 'junegunn/seoul256.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+
+" List ends here. Plugins become visible to Vim after this call.
+call plug#end()
+
+
+" set colorscheme after plug is called
+" enable italics
+let g:material_terminal_italics = 1
+let g:material_theme_style = 'palenight'
+colorscheme material

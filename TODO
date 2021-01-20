@@ -2,4 +2,5 @@ Consolidate vim directories and vimrc files for different hosts (make host agnos
 Consolidate ssh directories from different hosts
 Consolidate bashrc and bash_aliases from different hosts
 Make gvimrc useful (or get rid of it)
-
+Create setup script and update Git repo
+Create current and ongoing machine app inventory
